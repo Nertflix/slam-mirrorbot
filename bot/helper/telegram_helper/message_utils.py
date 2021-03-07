@@ -1,3 +1,4 @@
+from telegram import InlineKeyboardMarkup
 from telegram.message import Message
 from telegram.update import Update
 import time
@@ -15,12 +16,15 @@ def sendMessage(text: str, bot, update: Update):
                             text=text, parse_mode='HTMl')
     except Exception as e:
         LOGGER.error(str(e))
+def sendMarkup(text: str, bot, update: Update, reply_markup: InlineKeyboardMarkup):
+    return bot.send_message(update.message.chat_id,
+                            reply_to_message_id=update.message.message_id,
+                            text=text, reply_markup=reply_markup, parse_mode='HTMl')
 
-
-def editMessage(text: str, message: Message):
+def editMessage(text: str, message: Message, reply_markup=None):
     try:
         bot.edit_message_text(text=text, message_id=message.message_id,
-                              chat_id=message.chat.id,
+                              chat_id=message.chat.id,reply_markup=reply_markup,
                               parse_mode='HTMl')
     except Exception as e:
         LOGGER.error(str(e))
@@ -67,11 +71,14 @@ def update_all_messages():
     with status_reply_dict_lock:
         for chat_id in list(status_reply_dict.keys()):
             if status_reply_dict[chat_id] and msg != status_reply_dict[chat_id].text:
+                if len(msg) == 0:
+                    msg = "Starting DL"
                 try:
                     editMessage(msg, status_reply_dict[chat_id])
                 except Exception as e:
                     LOGGER.error(str(e))
                 status_reply_dict[chat_id].text = msg
+
 
 
 def sendStatusMessage(msg, bot):
@@ -86,5 +93,7 @@ def sendStatusMessage(msg, bot):
                 LOGGER.error(str(e))
                 del status_reply_dict[msg.message.chat.id]
                 pass
+        if len(progress) == 0:
+            progress = "Starting DL"
         message = sendMessage(progress, bot, msg)
         status_reply_dict[msg.message.chat.id] = message

@@ -50,7 +50,10 @@ Fork this repo, than upload credentials.json and token.pickle to your forks
 - Index Link support
 - Shortener support
 - Custom Buttons
+- Custom Filename (Only for url, telegram files and ytdl. Not for mega links and magnet/torrents)
 - Speedtest with picture results
+- Extracting password protected files and using custom filename see these examples:-
+> https://telegra.ph/Magneto-Python-Aria---Custom-Filename-Examples-01-20
 - Extract these filetypes and uploads to google drive
 > ZIP, RAR, TAR, 7z, ISO, WIM, CAB, GZIP, BZIP2, 
 > APM, ARJ, CHM, CPIO, CramFS, DEB, DMG, FAT, 
@@ -100,8 +103,9 @@ Thanks to:
 - [Dank-del](https://github.com/Dank-del/) for base repo
 - [magneto261290](https://github.com/magneto261290/) for some features
 - [SVR666](https://github.com/SVR666/) for some fixes
-- [iamLiquidX](https://github.com/iamLiquidX/) for Speedtest module
 - [4amparaboy](https://github.com/4amparaboy/) for some help
 - [WinTenDev](https://github.com/WinTenDev/) for Uptobox support
+- [iamLiquidX](https://github.com/iamLiquidX/) for Speedtest module
+- [ydner](https://github.com/ydner/) for Usage module
 
 and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/breakdowns/slam-mirrorbot/graphs/contributors).
